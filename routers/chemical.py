@@ -12,7 +12,7 @@ router = APIRouter()
 
 
 @router.get("/")
-def list_chemicals(skip: int = 0, limit: int = 50):
+def list_chemicals(skip: int = 0, limit: int = 1000):
     pipeline = [
         {"$lookup": {
             "from": "shelves",
@@ -131,9 +131,9 @@ def get_statistics():
     shelfwise_count = list(shelfwise_count)
     shelfwise_count = {shelf["shelf_name"]: shelf["chemical_count"] for shelf in shelfwise_count}
     return {
-        "total_chemicals": total_chemicals,
-        "total_shelves": total_shelves,
-        "shelfwise_count": shelfwise_count
+        "totalChemicals": total_chemicals,
+        "totalShelves": total_shelves,
+        "shelfwiseCount": shelfwise_count
     }
 
 # ──────────────── AUTHENTICATED ROUTES ────────────────
@@ -238,7 +238,7 @@ def get_by_bottle_number(bottle_number: str):
     return format_chemical_with_shelf(result[0])
 
 
-@router.post("/validate-bottle", dependencies=[Depends(JWTBearer())])
+@router.get("/validate-bottle/{bottle_number}")
 def check_bottle_availability(bottle_number: str):
     exists = chemicals_collection.find_one({"bottle_number": bottle_number})
     return {"available": not bool(exists)}

@@ -10,7 +10,6 @@ class Chemical(BaseModel):
     synonyms: List[str] = []
     msds_url: str = ""
     structure_2d_url: str = ""
-    structure_3d_url: str = ""
     bottle_number: str
     is_concentrated: bool = False
 
