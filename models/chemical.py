@@ -4,7 +4,7 @@ from datetime import datetime
 
 class Chemical(BaseModel):
     name: str
-    shelf_id: int  # This will reference the Shelf
+    shelf_id: str
     formula: str
     formula_latex: str
     synonyms: List[str] = []
