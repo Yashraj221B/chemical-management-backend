@@ -11,12 +11,13 @@ class LoginRequest(BaseModel):
     username: str
     password: str
 
-@router.post("/register")
-def register(user: User):
-    created = user_service.create_user(user)
-    if not created:
-        raise HTTPException(status_code=400, detail="User already exists")
-    return {"message": "User created"}
+# DISABLED DUE TO SECURITY REASONS
+# @router.post("/register")
+# def register(user: User):
+#     created = user_service.create_user(user)
+#     if not created:
+#         raise HTTPException(status_code=400, detail="User already exists")
+#     return {"message": "User created"}
 
 @router.post("/login")
 def login(login_data: LoginRequest):

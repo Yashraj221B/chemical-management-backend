@@ -23,7 +23,6 @@ markupsafe==3.0.3
 mdurl==0.1.2
 motor==3.7.1
 orjson==3.11.7
-passlib==1.7.4
 pyasn1==0.6.2
 pycparser==3.0
 pydantic==2.12.5

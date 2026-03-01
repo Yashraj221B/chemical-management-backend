@@ -1,9 +1,8 @@
 from db import users_collection
 from models.user import User
-from passlib.context import CryptContext
 from datetime import datetime, timezone
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+from services.security import hash_password as secure_hash_password
+from services.security import verify_password as secure_verify_password
 
 def get_user_by_username(username: str):
     user = users_collection.find_one({"username": username})
@@ -14,10 +13,10 @@ def get_user_by_email(email: str):
     return User(**user) if user else None
 
 def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
+    return secure_verify_password(plain_password, hashed_password)
 
 def hash_password(password):
-    return pwd_context.hash(password)
+    return secure_hash_password(password)
 
 def create_user(user_data):
     if get_user_by_username(user_data.username) or get_user_by_email(user_data.email):
