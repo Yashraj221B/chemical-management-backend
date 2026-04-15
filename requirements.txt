@@ -33,7 +33,7 @@ pygments==2.19.2
 pymongo==4.16.0
 python-dotenv==1.2.2
 python-jose==3.5.0
-python-multipart==0.0.22
+python-multipart==0.0.26
 pyyaml==6.0.3
 rich==14.3.3
 rich-toolkit==0.19.7
